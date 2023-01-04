@@ -1,0 +1,115 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group 'com.starkcore'
+version '0.0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation('com.starkbank.ellipticcurve:starkbank-ecdsa:1.0.2')
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation "junit:junit:4.13.2"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.8.2"
+}
+
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+archivesBaseName = "starkcore"
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications{
+
+        mavenJava(MavenPublication){
+
+            groupId = 'com.starkcore'
+            artifactId = 'starkcore'
+            version = '0.0.1'
+            from components.java
+
+            pom {
+                name = 'starkcore'
+                description = 'Welcome to the Stark Core Java SDK! This tool offers the basic functionalities used by our starkbank and starkinfra Java SDKs to operate our APIs.'
+
+                url = 'https://github.com/starkinfra/core-java'
+                inceptionYear = '2022'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/starkinfra/core-java/blob/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'cdottori-stark'
+                        name = 'Caio Dottori'
+                        email = 'caio.dottori@starkbank.com'
+                    }
+                    developer {
+                        id = 'joaogpw-stark'
+                        name = 'Joao Wiederkehr'
+                        email = 'joao.wiederkehr@starkbank.com'
+                    }
+                    developer {
+                        id = 'massaru-stark'
+                        name = 'Felipe Sueto'
+                        email = 'felipe.sueto@starkbank.com'
+                    }
+                    developer {
+                        id = 'xavier-stark'
+                        name = 'Mateus Xavier'
+                        email = 'mateus.xavier@starkbank.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git:github.com/starkinfra/core-java.git'
+                    developerConnection = 'scm:git:ssh://github.com/starkinfra/core-java.git'
+                    url = 'https://github.com/starkinfra/core-java'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = project.properties["ossrhUsername"]
+                password = project.properties["ossrhPassword"]
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
