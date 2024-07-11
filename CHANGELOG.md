@@ -13,9 +13,8 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 
 
 ## [Unreleased]
-### Added
-- MAINTAINERS.md 
-- starkcore API basic functionalities for starkbank and starkinfra
+
+## [0.1.0] - 2024-07-11
+### Added 
 - request methods
-### Changed
-- pom.xml groupId
+- starkcore API basic functionalities for starkbank and starkinfra
