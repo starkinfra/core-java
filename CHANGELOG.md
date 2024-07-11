@@ -16,3 +16,5 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 ### Added
 - starkcore API basic functionalities for starkbank and starkinfra
 - request methods
+### Changed
+- pom.xml groupId
