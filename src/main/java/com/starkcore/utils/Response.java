@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 import static java.lang.System.currentTimeMillis;
 
 
-public final class Response {
+public class Response {
 
     public int status;
     public InputStream stream;
@@ -79,7 +79,7 @@ public final class Response {
             path = path.substring(1);
         }
 
-        String url = urlMap.get(user.environment) + apiVersion + "/";
+        String url = urlMap.get(checkedUser.environment) + apiVersion + "/";
 
         String body = "";
         if (payload != null) {

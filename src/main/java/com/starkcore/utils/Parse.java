@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 public final class Parse{
     
-    public static <T extends Resource> T parseAndVerify(String content, String signature, String sdkVersion, String apiVersion, String host, Resource.ClassData resource, User user, String language, int timeout) throws Exception {
+    public static <T extends SubResource> T parseAndVerify(String content, String signature, String sdkVersion, String apiVersion, String host, Resource.ClassData resource, User user, String language, int timeout) throws Exception {
         String verifiedContent = verify(content, signature, sdkVersion, apiVersion, host, user, language, timeout);
 
         Gson gson = GsonEvent.getInstance();
@@ -67,18 +67,18 @@ public final class Parse{
         throw new InvalidSignatureError("The provided signature and content do not match the Stark Infra public key");
     }
 
-    private static boolean isSignatureValid(String content, Signature signature, PublicKey publicKey) throws Exception {
+    public static boolean isSignatureValid(String content, Signature signature, PublicKey publicKey) throws Exception {
         if (Ecdsa.verify(content, signature, publicKey)) {
             return true;
         }
         return false;
     }
 
-    private static PublicKey getPublicKey(String sdkVersion, String apiVersion, String host, User user, String language, int timeout) throws Exception {
+    public static PublicKey getPublicKey(String sdkVersion, String apiVersion, String host, User user, String language, int timeout) throws Exception {
         return getPublicKey(sdkVersion, apiVersion, host, user, language, timeout, false);
     }
 
-    private static PublicKey getPublicKey(String sdkVersion, String apiVersion, String host, User user, String language, int timeout, Boolean refresh) throws Exception {
+    public static PublicKey getPublicKey(String sdkVersion, String apiVersion, String host, User user, String language, int timeout, Boolean refresh) throws Exception {
         PublicKey publicKey = Cache.starkPublicKey;
         if (publicKey != null || refresh) {
             return publicKey;

@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.starkcore.Settings;
 import com.starkcore.utils.Page;
 import com.starkcore.utils.Rest;
 import com.starkcore.utils.StarkHost;
@@ -20,6 +21,8 @@ public class TestRest {
     @Test
     public void testRestGet() throws Exception {
 
+        Settings.user = utils.User.defaultProject();
+
         Map<String, Object> params = new HashMap<>();
         params.put("before", "2022-02-01");
         params.put("limit", 1);
@@ -28,7 +31,7 @@ public class TestRest {
             "0.0.0",
             StarkHost.bank.toString(),
             "v2",
-            utils.User.defaultProject(),
+            null,
             Transaction.data,
             "pt-BR",
             15,
@@ -41,6 +44,8 @@ public class TestRest {
     @Test
     public void testRestGetRaw() throws Exception {
 
+        Settings.user = utils.User.defaultProject();
+
         String path = "/invoice";
         Map<String, Object> query = new HashMap<>();
         query.put("limit", 10);
@@ -49,7 +54,7 @@ public class TestRest {
                 StarkHost.bank.toString(),
                 "v2",
                 path,
-                utils.User.defaultProject(),
+                null,
                 "pt-BR",
                 15,
                 query,
@@ -72,6 +77,8 @@ public class TestRest {
     @Test
     public void testRestPostRaw() throws Exception {
 
+        Settings.user = utils.User.defaultProject();
+
         String path = "/invoice";
         Map<String, Object> payload = new HashMap<>();
         payload.put("name", "Jaime Lannister" + UUID.randomUUID().toString());
@@ -89,7 +96,7 @@ public class TestRest {
                 StarkHost.bank.toString(),
                 "v2",
                 path,
-                utils.User.defaultProject(),
+                null,
                 "pt-BR",
                 15,
                 null,
@@ -123,7 +130,7 @@ public class TestRest {
                 StarkHost.bank.toString(),
                 "v2",
                 path,
-                utils.User.defaultProject(),
+                null,
                 "pt-BR",
                 15,
                 query,
@@ -150,7 +157,7 @@ public class TestRest {
                 StarkHost.bank.toString(),
                 "v2",
                 path,
-                utils.User.defaultProject(),
+                null,
                 "pt-BR",
                 15,
                 null,
@@ -171,6 +178,8 @@ public class TestRest {
     @Test
     public void testRequestPut() throws Exception {
 
+        Settings.user = utils.User.defaultProject();
+
         String path = "/split-profile";
         Map<String, Object> payload = new HashMap<>();
         payload.put("interval", "day");
@@ -187,7 +196,7 @@ public class TestRest {
                 StarkHost.bank.toString(),
                 "v2",
                 path,
-                utils.User.defaultProject(),
+                null,
                 "pt-BR",
                 15,
                 null,
@@ -211,6 +220,8 @@ public class TestRest {
     @Test
     public void testRequestDelete() throws Exception {
 
+        Settings.user = utils.User.defaultProject();
+
         String path = "/transfer";
         Map<String, Object> payload = new HashMap<>();
         payload.put("name", "Jaime Lannister" + UUID.randomUUID().toString());
@@ -233,7 +244,7 @@ public class TestRest {
                 StarkHost.bank.toString(),
                 "v2",
                 path,
-                utils.User.defaultProject(),
+                null,
                 "pt-BR",
                 15,
                 null,
@@ -259,7 +270,7 @@ public class TestRest {
                 StarkHost.bank.toString(),
                 "v2",
                 path,
-                utils.User.defaultProject(),
+                null,
                 "pt-BR",
                 15,
                 null,

@@ -82,7 +82,7 @@ public abstract class Generator<T> implements Iterable<T> {
         };
     }
 
-    protected abstract void run() throws Exception;
+    public abstract void run() throws Exception;
 
     protected void yield(T element) throws InterruptedException {
         nextItem = element;

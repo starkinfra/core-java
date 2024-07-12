@@ -3,6 +3,7 @@ package com.starkcore.utils;
 import com.starkbank.ellipticcurve.PrivateKey;
 import com.starkcore.Environment;
 import com.starkcore.user.User;
+import com.starkcore.Settings;
 
 import java.util.Arrays;
 
@@ -30,6 +31,9 @@ public final class Check {
     }
 
     static User user(User user) throws Error {
+        if (user == null) {
+            user = Settings.user;
+        }
         if (user == null) {
             throw new Error("A user is required to access our API. Check our README: https://github.com/starkinfra/sdk-java/");
         }
