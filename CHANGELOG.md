@@ -17,6 +17,8 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 ## [0.3.0] - 2024-07-13
 ### Added
 - Market place app user type
+### Fixed
+- Market place app docstring
 
 ## [0.2.0] - 2024-07-12
 ### Added
