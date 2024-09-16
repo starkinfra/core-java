@@ -20,6 +20,7 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 ### Fixed
 - Market place app docstring
 - Market place app class name
+- Market place app folder name
 
 ## [0.2.0] - 2024-07-12
 ### Added
