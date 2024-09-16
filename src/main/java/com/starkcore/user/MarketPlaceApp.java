@@ -1,15 +1,15 @@
 package com.starkcore.user;
 
-public class MarketPlaceApp extends User{
-    static ClassData data = new ClassData(MarketPlaceApp.class, "MarketPlaceApp");
+public class MarketplaceApp extends User{
+    static ClassData data = new ClassData(MarketplaceApp.class, "MarketplaceApp");
 
     public final String authorizationId;
 
     /**
-     * MarketPlaceApp object
+     * MarketplaceApp object
      * <p>
-     * The MarketPlaceApp object is an authentication entity for the SDK that
-     * represents your MarketPlace Application, being able to access any authorized Workspace.
+     * The MarketplaceApp object is an authentication entity for the SDK that
+     * represents your Marketplace Application, being able to access any authorized Workspace.
      * All requests to the Stark Bank and Stark Infra API must be authenticated via an SDK user,
      * which must have been previously created at the Stark Bank or Stark Infra websites
      * [https://web.sandbox.starkbank.com] or [https://web.starkbank.com]
@@ -29,16 +29,16 @@ public class MarketPlaceApp extends User{
      * Return:
      * @throws Exception error in the request
      */
-    public MarketPlaceApp(String environment, String id, String privateKey) throws Exception {
+    public MarketplaceApp(String environment, String id, String privateKey) throws Exception {
         super(environment, id, privateKey);
         this.authorizationId = null;
     }
 
     /**
-     * MarketPlaceApp object
+     * MarketplaceApp object
      * <p>
-     * The MarketPlaceApp object is an authentication entity for the SDK that
-     * represents your MarketPlace Application, being able to access any authorized Workspace.
+     * The MarketplaceApp object is an authentication entity for the SDK that
+     * represents your Marketplace Application, being able to access any authorized Workspace.
      * All requests to the Stark Bank and Stark Infra API must be authenticated via an SDK user,
      * which must have been previously created at the Stark Bank or Stark Infra websites
      * [https://web.sandbox.starkbank.com] or [https://web.starkbank.com]
@@ -59,7 +59,7 @@ public class MarketPlaceApp extends User{
      * Return:
      * @throws Exception error in the request
      */
-    public MarketPlaceApp(String environment, String id, String privateKey, String authorizationId) throws Exception {
+    public MarketplaceApp(String environment, String id, String privateKey, String authorizationId) throws Exception {
         super(environment, id, privateKey);
         this.authorizationId = authorizationId;
     }
@@ -70,11 +70,11 @@ public class MarketPlaceApp extends User{
         return "marketplace-app/" + this.id;
     }
 
-    public static MarketPlaceApp replace(MarketPlaceApp MarketPlaceApp, String authorizationId) throws Exception {
-        return new MarketPlaceApp(
-            MarketPlaceApp.environment,
-            MarketPlaceApp.id,
-            MarketPlaceApp.pem,
+    public static MarketplaceApp replace(MarketplaceApp MarketplaceApp, String authorizationId) throws Exception {
+        return new MarketplaceApp(
+            MarketplaceApp.environment,
+            MarketplaceApp.id,
+            MarketplaceApp.pem,
             authorizationId
         );
     }
