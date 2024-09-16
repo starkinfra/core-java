@@ -16,11 +16,11 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 
 ## [0.3.0] - 2024-09-16
 ### Added
-- Market place app user type
+- Marketplace app user type
 ### Fixed
-- Market place app docstring
-- Market place app class name
-- Market place app folder name
+- Marketplace app docstring
+- Marketplace app class name
+- Marketplace app folder name
 
 ## [0.2.0] - 2024-07-12
 ### Added
