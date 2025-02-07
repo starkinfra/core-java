@@ -288,6 +288,28 @@ public final class Rest {
         return entities;
     }
 
+    public static <T extends SubResource> T postSubResources(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, String id, SubResource.ClassData subResource, String language, int timeout, SubResource entity) throws Exception {
+        JsonObject payload = (JsonObject) new Gson().toJsonTree((entity));
+        String content = Response.fetch(
+                host,
+                sdkVersion,
+                user,
+                "POST",
+                Api.endpoint(resource, id) + "/" + Api.endpoint(subResource),
+                payload,
+                null,
+                apiVersion,
+                language,
+                timeout,
+                null,
+                true
+        ).content();
+        Gson gson = GsonEvent.getInstance();
+        JsonObject contentJson = gson.fromJson(content, JsonObject.class);
+        JsonObject jsonObject = contentJson.get(Api.getLastName(subResource)).getAsJsonObject();
+        return gson.fromJson(jsonObject, (Type) subResource.cls);
+    }
+
     public static <T extends SubResource> T delete(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, String id, String language, int timeout) throws Exception {
         String content = Response.fetch(
             host,
