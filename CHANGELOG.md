@@ -14,6 +14,7 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 
 ## [Unreleased]
 ### Added
+- query param to delete method
 - postSubResource method
 
 ## [0.3.0] - 2024-09-16
