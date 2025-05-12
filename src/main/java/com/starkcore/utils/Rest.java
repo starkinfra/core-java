@@ -1,11 +1,5 @@
 package com.starkcore.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.starkcore.user.User;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
@@ -13,6 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.starkcore.user.User;
 
 
 public final class Rest {
@@ -310,7 +310,7 @@ public final class Rest {
         return gson.fromJson(jsonObject, (Type) subResource.cls);
     }
 
-    public static <T extends SubResource> T delete(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, String id, String language, int timeout) throws Exception {
+    public static <T extends SubResource> T delete(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, String id, String language, int timeout, Map<String, Object> query) throws Exception {
         String content = Response.fetch(
             host,
             sdkVersion,
@@ -318,7 +318,7 @@ public final class Rest {
             "DELETE",
             Api.endpoint(resource, id),
             null,
-            null,
+            query,
             apiVersion,
             language,
             timeout,
