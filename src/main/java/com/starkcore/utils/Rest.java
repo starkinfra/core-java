@@ -331,6 +331,20 @@ public final class Rest {
         return gson.fromJson(jsonObject, (Type) resource.cls);
     }
 
+    public static <T extends SubResource> T delete(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, String id, String language, int timeout) throws Exception {
+        return delete(
+            sdkVersion,
+            host,
+            apiVersion,
+            user,
+            resource,
+            id,
+            language,
+            timeout,
+            null
+        );
+    }
+
     public static <T extends SubResource> T postSingle(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, SubResource entity, String language, int timeout) throws Exception {
         JsonObject payload = (JsonObject) new Gson().toJsonTree((entity));
         String content = Response.fetch(
