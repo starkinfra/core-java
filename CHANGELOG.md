@@ -13,6 +13,8 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 
 
 ## [Unreleased]
+
+## [0.4.1] - 2025-07-02
 ### Fixed
 - query param on delete method
 
