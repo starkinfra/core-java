@@ -13,6 +13,8 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 
 
 ## [Unreleased]
+### Fixed
+- UnknownError import
 
 ## [0.4.2] - 2025-07-24
 ### Added
