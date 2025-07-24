@@ -42,6 +42,31 @@ public class TestRest {
     }
 
     @Test
+    public void testRestInvalidTimeout() throws Exception {
+
+        Settings.user = utils.User.defaultProject();
+        Settings.timeout = -1; 
+
+        try {
+            Page transactions = Rest.getPage(
+                "0.0.0",
+                StarkHost.bank.toString(),
+                "v2",
+                null,
+                Transaction.data,
+                "pt-BR",
+                15,
+                null
+            );
+            Assert.fail("Expected an Exception to be thrown");
+        } catch (Exception e) {
+            Assert.assertEquals(e.getMessage(), "Timeout must be a positive integer");
+        } finally {
+            Settings.timeout = null;
+        }
+    }
+
+    @Test
     public void testRestGetRaw() throws Exception {
 
         Settings.user = utils.User.defaultProject();
