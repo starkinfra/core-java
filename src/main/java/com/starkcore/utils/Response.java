@@ -52,6 +52,7 @@ public class Response {
           String apiVersion, String language, int timeout, String prefix, Boolean raiseException) throws Exception {
         User checkedUser = Check.user(user);
         String checkedLanguage = Check.language(language);
+        Integer checkedTimeout = Check.timeout(timeout);
 
         HashMap <String, String> serviceMap = new HashMap<String, String>() {
             {
@@ -93,7 +94,7 @@ public class Response {
 
         headers.putAll(authenticationHeaders(checkedUser, body));
 
-        Response response = executeMethod(url, path, body, method, headers, timeout);
+        Response response = executeMethod(url, path, body, method, headers, checkedTimeout);
 
         if (!raiseException) {
             return response;

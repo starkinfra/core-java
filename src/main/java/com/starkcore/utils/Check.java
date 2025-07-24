@@ -49,4 +49,14 @@ public final class Check {
             String.format("Language must be one from %s", Arrays.toString(acceptedLanguages))
         );
     }
+
+    public static Integer timeout(Integer timeout) throws Exception {
+        if(Settings.timeout != null) {
+            if(Settings.timeout <= 0) {
+                throw new Exception("Timeout must be a positive integer");
+            }
+            return Settings.timeout;
+        } 
+        return timeout;
+    }
 }
