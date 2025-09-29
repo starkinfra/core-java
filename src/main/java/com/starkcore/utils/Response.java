@@ -5,6 +5,7 @@ import com.starkbank.ellipticcurve.Ecdsa;
 import com.starkcore.Environment;
 import com.starkcore.error.InputErrors;
 import com.starkcore.error.InternalServerError;
+import com.starkcore.error.UnknownError;
 import com.starkcore.user.PublicUser;
 import com.starkcore.user.User;
 import okhttp3.MediaType;
