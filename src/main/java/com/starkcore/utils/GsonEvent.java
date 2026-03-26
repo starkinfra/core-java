@@ -17,6 +17,7 @@ public class GsonEvent {
 
     public static void registerTypeAdapter(Type type, Object typeAdapter) {
         typeObjectHashMap.put(type, typeAdapter);
+        instance = null;
     }
 
     public static synchronized Gson getInstance()
