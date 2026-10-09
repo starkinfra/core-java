@@ -20,6 +20,8 @@ final class Api {
             return lastName + "s";
         if (lastName.endsWith("y"))
             return lastName.substring(0, lastName.length()-1) + "ies";
+        if (lastName.endsWith("ch") || lastName.endsWith("sh") || lastName.endsWith("x"))
+            return lastName + "es";
         return lastName + "s"; 
     }
 
