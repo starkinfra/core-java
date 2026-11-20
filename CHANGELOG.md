@@ -13,6 +13,8 @@ Given a version number MAJOR.MINOR.PATCH, increment:
 
 
 ## [Unreleased]
+### Added
+- patchMulti method, the PATCH counterpart of post, to update several resources in one request
 
 ## [0.6.0] - 2026-10-15
 ### Added
