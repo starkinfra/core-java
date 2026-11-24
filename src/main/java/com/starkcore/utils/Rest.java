@@ -203,6 +203,47 @@ public final class Rest {
         return postEntities;
     }
 
+    public static <T extends SubResource> List<T> patchMulti(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, List<?> entities, String language, int timeout) throws Exception {
+        return patchMulti(
+            sdkVersion,
+            host,
+            apiVersion,
+            user,
+            resource,
+            entities,
+            null,
+            language,
+            timeout
+        );
+    }
+
+    public static <T extends SubResource> List<T> patchMulti(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, List<?> entities, Map<String, Object> data, String language, int timeout) throws Exception {
+        JsonObject payload = new JsonObject();
+        payload.add(Api.getLastNamePlural(resource), new Gson().toJsonTree(entities).getAsJsonArray());
+        String content = Response.fetch(
+            host,
+            sdkVersion,
+            user,
+            "PATCH",
+            Api.endpoint(resource),
+            payload,
+            data,
+            apiVersion,
+            language,
+            timeout,
+            null,
+            true
+        ).content();
+        JsonObject contentJson = new Gson().fromJson(content, JsonObject.class);
+        List<T> patchedEntities = new ArrayList<>();
+        JsonArray jsonArray = contentJson.get(Api.getLastNamePlural(resource)).getAsJsonArray();
+        for (JsonElement resourceElement : jsonArray) {
+            JsonObject jsonObject = resourceElement.getAsJsonObject();
+            patchedEntities.add(GsonEvent.getInstance().fromJson(jsonObject, (Type) resource.cls));
+        }
+        return patchedEntities;
+    }
+
     public static <T extends SubResource> T patch(String sdkVersion, String host, String apiVersion, User user, Resource.ClassData resource, String id, String language, int timeout, Map<String, Object> data) throws Exception {
         JsonObject payload = new Gson().fromJson(new Gson().toJson(data), JsonObject.class);
         String content = Response.fetch(
